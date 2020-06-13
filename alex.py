@@ -41,7 +41,7 @@ def get_datum(sample1, sample2, data):
     return None
 
 
-def is_significant(group, data):
+def is_non_significant(group, data):
     for i in range(len(group)):
         for j in range(i, len(group)):
             adjsig = get_datum(group[i], group[j], data)
@@ -55,7 +55,7 @@ def main():
     groups = get_groups(data)
     non_sig_groups = []
     for group in groups:
-        if is_significant(group, data):
+        if is_non_significant(group, data):
             non_sig_groups.append(group)
     non_sig_groups = slim(non_sig_groups)
     print(non_sig_groups)
