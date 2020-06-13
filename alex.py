@@ -12,6 +12,12 @@ def get_data():
         data.append(new_datum)
     return data
 
+def write_data(data):
+    with open('output.csv', 'w', newline='') as csvfile:
+        w = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+        for datum in data:
+            w.writerow(datum)
+
 def get_groups(data):
     sample_list = []
     groups = []
@@ -59,9 +65,5 @@ def main():
             non_sig_groups.append(group)
     non_sig_groups = slim(non_sig_groups)
     print(non_sig_groups)
-    with open('output.csv', 'w', newline='') as csvfile:
-        w = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
-        for group in non_sig_groups:
-            w.writerow(group)
 
 main()
