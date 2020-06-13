@@ -40,21 +40,18 @@ def slim(groups):
                 fat.append(group_j)
     return list(filter(lambda g: g not in fat, groups))
 
-def get_datum(sample1, sample2, data):
-    for datum in data:
-        if datum['samples'] == (sample1, sample2) or datum['samples'] == (sample2, sample1):
-            return datum['adjsig']
-    return None
-
-
 def is_non_significant(group, data):
+    def get_datum(sample1, sample2, data):
+        for datum in data:
+            if datum['samples'] == (sample1, sample2) or datum['samples'] == (sample2, sample1):
+                return datum['adjsig']
+        return None
     for i in range(len(group)):
         for j in range(i, len(group)):
             adjsig = get_datum(group[i], group[j], data)
             if adjsig is not None and adjsig < alpha:
                 return False
     return True
-
 
 def main():
     data = get_data()
@@ -64,7 +61,6 @@ def main():
         if is_non_significant(group, data):
             non_sig_groups.append(group)
     non_sig_groups = slim(non_sig_groups)
-    print(non_sig_groups)
     write_data(non_sig_groups)
 
 main()
