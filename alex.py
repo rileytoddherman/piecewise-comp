@@ -65,5 +65,6 @@ def main():
             non_sig_groups.append(group)
     non_sig_groups = slim(non_sig_groups)
     print(non_sig_groups)
+    write_data(non_sig_groups)
 
 main()
