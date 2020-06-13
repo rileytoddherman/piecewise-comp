@@ -12,35 +12,6 @@ def get_data():
         data.append(new_datum)
     return data
 
-
-def get_fake_data():
-    return [
-        {
-            'samples': ('a', 'b'),
-            'adjsig': 1.00
-        },
-        {
-            'samples': ('a', 'c'),
-            'adjsig': 0.00
-        },
-        {
-            'samples': ('a', 'd'),
-            'adjsig': 1.00
-        },
-        {
-            'samples': ('b', 'c'),
-            'adjsig': 0.00
-        },
-        {
-            'samples': ('b', 'd'),
-            'adjsig': 1.00
-        },
-        {
-            'samples': ('c', 'd'),
-            'adjsig': 0.00
-        }
-    ]
-
 def get_groups(data):
     sample_list = []
     groups = []
@@ -81,7 +52,6 @@ def is_significant(group, data):
 
 def main():
     data = get_data()
-    # data = get_fake_data()
     groups = get_groups(data)
     non_sig_groups = []
     for group in groups:
